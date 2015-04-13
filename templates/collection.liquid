@@ -1,4 +1,7 @@
 <section id="main-content" class="{{ collection.title | downcase }} clearfix">
+	<div class="collection-title">
+		<h2>{{ collection.title }}</h2>
+	</div>
 	{% if collection.all_products_count > 0 %}
 		{% for product in collection.products %}
 		<div class="product">
