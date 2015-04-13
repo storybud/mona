@@ -1,0 +1,12 @@
+<section id="gallery" class="home-page">
+	{% for i in (1..11) %}
+		{% capture show_image %}show_image_{{i}}{% endcapture %}
+		{% capture image %}hm_img_{{i}}.jpg{% endcapture %}
+		{% capture alt %}hm_img_{{i}}_alt{% endcapture %}
+		{% capture link %}hm_img_{{i}}_link{% endcapture %}
+		{% if settings[show_image] %}
+			<a href="{{ settings[link] }}"><img src="{{ image | asset_url }}" alt="{{ settings[alt] | escape }}"></a>
+		{% endif %}
+	{% endfor %}
+</section>
+

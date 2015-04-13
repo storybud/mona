@@ -1,0 +1,18 @@
+<section id="main-content" class="{{ collection.title | downcase }} clearfix">
+	{% if collection.all_products_count > 0 %}
+		{% for product in collection.products %}
+		<div class="product">
+			<div class="image">
+				<a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" /></a>
+			</div>
+			<div class="details">
+				<h4 class="title"><a href="{{ product.url }}">{{ product.title | upcase }}</a></h4>
+				<span class="vendor">{{ product.vendor}}</span>
+				<span class="price">{{ product.price | money}}</span>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+		<p>Sorry, there are no products in this collection</p>
+	{% endif %}
+</section>

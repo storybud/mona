@@ -1,0 +1,116 @@
+<section id="main-content" class="prod-page clearfix">
+
+    <!-- Begin Main image -->
+    <div class="image featured">
+        <img src="{{ product.featured_image | product_img_url: 'original' }}" alt="{{ product.featured_image.alt | escape }}" />
+    </div>
+    <!-- End Main image -->
+
+    <!-- Begin Thumbnail image -->
+    <div class="thumbnails">
+        {% for image in product.images %}
+          <div class="image-thumb">
+            <a href="{{ image | product_img_url: 'original' }}">
+              <img src="{{ image.src | product_img_url: 'medium' }}" />
+            </a>
+          </div>
+        {% endfor %}
+    </div>
+    <!-- End Thumbnail image -->
+    
+    <div class="product-details">
+
+      <h2 class="title">{{ product.title | upcase }}</h2>
+
+      <h3 class="price">{{ product.price | money}}</h3>
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data">
+          <div class="select">
+            <select name="id">
+                {% for variant in product.variants %}
+                {% if variant.available == true %}
+                <option value="{{variant.id}}"> {{ variant.title }}</option>
+                {% else %}
+                <option disabled="disabled"> {{ variant.title }} - sold out!</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+          </div>
+          <div class="quantity">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" type="number" name="quantity" value="1"  min="1" />
+          </div>
+          <div class="purchase">
+            {% unless product.available %}
+              <p>Sold Out</p>
+            {% else %}
+              <input type="submit" name="add" id="add" value="Add to Cart" class="button">
+            {% endunless %}
+          </div>
+      </form>
+
+      <div class="description">
+        {{ product.description }}
+      </div>
+
+      <div class="social">
+        {% include 'like' %}
+      </div>
+    </div>
+
+
+    
+    
+
+    
+     
+
+          
+
+
+
+<!--{% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+{% assign found_a_collection = false %}
+{% for c in product.collections %}
+  {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
+    {% assign found_a_collection = true %}
+    {% assign collection = c %}
+  {% endif %}
+{% endfor %}
+{% endif %}-->
+<!--{{ product.handle }}
+{% if collection and collection.products_count > 1 %}
+    
+<div class="row">
+  <div class="span12">
+    <h3 class="collection-title">Related products</h3>
+  </div>
+</div> 
+    
+<div class="row products">
+
+{% assign current_product = product %}
+{% assign current_product_found = false %}
+{% for product in collection.products %}
+  {% if product.handle == current_product.handle %}
+    {% assign current_product_found = true %}
+  {% else %}
+    {% unless current_product_found == false and forloop.last %}
+      {% if collection.all_products_count > 0 %}
+        {% for product in collection.products %}
+            <a href="{{ product.url }}"><img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape }}" /></a>
+            <h2><a href="{{ product.url }}">{{ product.title }}</a></h2>
+            <p>{{ product.vendor}}</p>
+            <p>{{ product.price | money}}</p>
+        {% endfor %}
+    {% else %}
+        <p>Sorry, there are no products in this collection</p>
+    {% endif %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+</div>
+
+{% endif %}-->
+</section>

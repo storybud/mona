@@ -1,0 +1,83 @@
+var imageSize = function(){
+	var h = $("#gallery").height();
+
+	$("#pics img").height(h);
+}
+
+$(function(){
+
+	if( !/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	 	// Image table build
+		$("#gallery").wrapInner("<table id='pics' cellspacing='0' cellpadding='0'><tr>");
+		$("#gallery a").wrap("<td>");
+	}
+	
+
+	imageSize();
+
+	$(window).on("resize", function(){
+		imageSize();
+	});
+
+	$(".template-index").mousewheel(function(event, delta) {
+		this.scrollLeft -= (delta * 5);
+		event.preventDefault();
+	});
+
+	//Nav Dropdown
+	// $(".dropdown-parent").on("mouseenter", function(){
+	// 	$(this).find('.dropdown').fadeIn();
+	// });
+	// $(".dropdown-parent").on("mouseleave", function(){
+	// 	$(this).find('.dropdown').fadeOut();
+	// });
+	$("li.dropdown").hover(function(){
+	    $(this).children('.dropdown').show();
+	    $(this).children('.dropdown').stop();
+	    $(this).children('.dropdown').animate({
+	      opacity: 1.0
+	    }, 200);
+	  }, function(){
+	    $(this).children('.dropdown').stop();
+	    $(this).children('.dropdown').animate({
+	      opacity: 0.0
+	    }, 400, function(){
+	      $(this).hide();
+	    });
+	  });
+
+	// Mobile menu toggle
+	$(".mobile-burger").on("click" ,function() {
+		$("#logo-nav").toggle(0, function () {
+		    $(this).addClass("active");
+		    //$("header .nav").addClass("active");
+		}, function () {
+		    $(this).removeClass("active");
+		    //$("header .nav").removeClass("active");
+		});
+	});
+
+
+	// Product Thumb toggle
+	$(".prod-page .thumbnails a").on("click", function(event){
+		event.preventDefault();
+		//alert($(this).attr("href"));
+		$(".featured img").unwrap("span");
+		$(".featured img")
+		.attr("src", $(this).attr("href"))
+		.wrap('<span style="display:inline-block"></span>')
+	    .css('display', 'block')
+	    .parent()
+	    .zoom();
+		$(".featured span:last").remove();
+	    
+	});
+
+	// IMAGE ZOOM
+	$('.featured img')
+    .wrap('<span style="display:inline-block"></span>')
+    .css('display', 'block')
+    .parent()
+    .zoom();
+
+});

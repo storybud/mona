@@ -1,0 +1,60 @@
+<section id="main-content" class="cart">
+{% if cart.item_count > 0 %}
+<h2>YOUR CART</h2>
+<div class="cart-form">
+<form action="/cart" method="post" id="cart">
+    <table>
+        <thead>
+            <tr>
+                <th class="image">&nbsp;</th>
+                <th class="item">&nbsp;</th>
+                <th class="qty">Quantity</th>
+                <th class="price">Price</th>
+                <th class="remove">&nbsp;</th>
+            </tr>
+        </thead>
+        {% for item in cart.items %}
+        <tr id="cart-item-{{item.variant.id}}" class="cart-item">
+            <td class="image">
+                <div class="product_image">
+                  <a href="{{ item.product.url }}">
+                    <img src="{{ item.product.featured_image | product_img_url: 'small' }}"  alt="{{ item.product.title }}" />
+                  </a>
+                </div>
+            </td>
+            <td class="item">
+                <a href="{{item.product.url }}">
+                  <strong>{{ item.product.title }}</strong>
+                  {% if item.product.variants.size > 1 %}
+                  <span class="variant_title">{{ item.variant.title }}</span>
+                  {% endif %}
+                </a>
+            </td>
+            <td class="qty">
+                <input type="text" size="4" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" onfocus="this.select();" class="tc item-quantity" />
+            </td>
+            <td class="price">{{ item.line_price | money }}</td>
+            <td class="remove"><a href="/cart/change?line={{ forloop.index }}&quantity=0">Remove</a></td>
+        </tr>
+        {% endfor %}
+        <tr class="summary">
+              <td class="image">&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td class="price"><span class="total"><strong>{{ cart.total_price | money }}</strong></span></td>
+              <td>&nbsp;</td>
+            </tr>
+        <tr class="actions">
+            <td colspan="5">
+                <input class="button" type="submit" id="update-cart" name="update" value="Update"  />
+                <input class="button" type="submit" name="checkout" value="Checkout" />
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+
+{% else %}
+<p>It appears that your cart is currently empty!</p>
+{% endif %}
+</section>
