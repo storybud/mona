@@ -1,5 +1,7 @@
-<ul>
-  {% for article in blog.articles %}
-  <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-  {% endfor %}
-</ul>
+<section id="main-content">
+	<ul>
+	  {% for article in blog.articles %}
+	  <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+	  {% endfor %}
+	</ul>
+</section>
