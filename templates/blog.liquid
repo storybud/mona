@@ -1,7 +1,19 @@
 <section id="main-content">
-	<ul>
-	  {% for article in blog.articles %}
-	  <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-	  {% endfor %}
-	</ul>
+	{% paginate blog.articles by settings.pagination_limit %}
+	<div class="blog-main">
+		{% for article in blog.articles %}
+			<article>
+				<header>
+					<h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+					<span class="date">{{ article.published_at | date: "%B %d %Y" }}</span>
+				</header>
+				{{ article.excerpt_or_content }}
+			</article>
+		{% endfor %}
+		{% include 'pagination' %}
+	</div>
+	<div class="sidebar">
+		{% comment %}{% include 'blog_sidebar' %}{% endcomment %}
+	</div>
+	{% endpaginate %}
 </section>

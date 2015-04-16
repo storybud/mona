@@ -70,7 +70,7 @@ h1 {
 }
 h2 {
     margin-top: 0px;
-    line-height: 20px;
+    line-height: 25px;
     font-weight: lighter;
 }
 h3 {
@@ -103,8 +103,8 @@ a.active{
     display: block;
 }*/
 
-/* Site Header - Left */
-header {
+/* Site header.main-head - Left */
+header.main-head {
     position: fixed;
     padding: 1% 15px 1% 0;
     left: 0;
@@ -116,33 +116,33 @@ header {
     z-index: 10;
     background: #fff;
 }
-    header h1 {
+    header.main-head h1 {
         margin: 0px;
         float: left;
     }
 
-    header nav {
+    header.main-head nav {
         float: right;
         width: auto;
         text-align: right;
         font-size: 1em;
     }
 
-        header nav ul {
+        header.main-head nav ul {
             margin: 0px;
             padding: 0px;
         }
-            header nav ul li {
+            header.main-head nav ul li {
                 position: relative;
                 margin: 0px 0px 5px 0px;
             }
-                header nav ul li a{
+                header.main-head nav ul li a{
                 }
             /* Nav Dropdown style */
-            header li.dropdown {
+            header.main-head li.dropdown {
                 
             }
-            header li.dropdown .dropdown {
+            header.main-head li.dropdown .dropdown {
                 display: none;
                 position: absolute;
                 overflow: visible;
@@ -154,10 +154,10 @@ header {
                 top: 0;
                 right: -149px;
             }
-            header .dropdown li {
+            header.main-head .dropdown li {
 
             }
-            header .dropdown a {
+            header.main-head .dropdown a {
 
             }
 
@@ -468,6 +468,26 @@ footer {
                         font-size: 13px;
                     }
 
+/* Blog Content */
+.blog-main {
+
+}
+    .blog-main article {
+        padding-bottom: 20px;
+        border-bottom: 2px solid #838383;
+        margin-bottom: 20px;
+    }
+        .blog-main header {
+            margin-bottom: 15px;
+        }
+        .blog-main h2 {
+            margin: 0px;
+            text-transform: uppercase;
+        }
+        .blog-main .date{
+            font-size: 10px;
+        }
+
 /* Shop Cart Page */
 
 .cart {
@@ -556,7 +576,7 @@ footer {
                 margin: 0px auto;
                 margin-bottom: 5px;
             }
-    header {
+    header.main-head {
         position: relative;
         padding: 0 0px 0 0;
         left: auto;
@@ -566,21 +586,21 @@ footer {
         min-height: 0px;
         max-height: auto;
     }
-    header h1 {
+    header.main-head h1 {
         padding: 10px;
         width: 22%;
         box-sizing: border-box;
     }
-    header img {
+    header.main-head img {
         width: 100%;
     }
-    header nav {
+    header.main-head nav {
         float: left;
         width: 78%;
         text-align: left;
         font-size: 1.1em;
     }
-            header nav ul li {
+            header.main-head nav ul li {
                 padding: 15px 0px 15px 0px;
                 float: left;
                 width: 100%;
@@ -589,15 +609,15 @@ footer {
                 border-bottom: 1px solid #eee;
                 border-left: 1px solid #eee;
             }
-                header nav ul li a{
+                header.main-head nav ul li a{
                     display: block;
                     padding: 0px 0px 0px 15px
                 }
 
-                header li.dropdown {
+                header.main-head li.dropdown {
                 
                 }
-                header li.dropdown .dropdown {
+                header.main-head li.dropdown .dropdown {
                     display: block;
                     position: relative;
                     overflow: visible;
@@ -609,11 +629,11 @@ footer {
                     top: 0;
                     right: 0;
                 }
-                header .dropdown li {
+                header.main-head .dropdown li {
                     border-left: none;
                     padding-left: 10px
                 }
-                header .dropdown a {
+                header.main-head .dropdown a {
 
                 }
 
@@ -887,7 +907,7 @@ footer {
     }
 
     thead {
-        display: table-header-group; /* h5bp.com/t */
+        display: table-header.main-head-group; /* h5bp.com/t */
     }
 
     tr,
